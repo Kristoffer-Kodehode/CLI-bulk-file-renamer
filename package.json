@@ -1,0 +1,14 @@
+{
+  "dependencies": {
+    "inquirer": "^9.2.12",
+    "yargs": "13.2"
+  },
+  "name": "cli-rn",
+  "version": "1.0.0",
+  "description": "CLI app to rename all files in a folder",
+  "main": "main.js",
+  "type": "module",
+  "scripts": {},
+  "author": "",
+  "license": "ISC"
+}
