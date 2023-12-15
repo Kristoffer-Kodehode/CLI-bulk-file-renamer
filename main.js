@@ -58,8 +58,12 @@ async function rename() {
     let ext = path.extname(file);
     //let name = path.basename(file, ext);
     count += 1;
-    if (files.length >= 10 && !files.length > 10) {
+    if (files.length >= 100) {
       if (count < 10) {
+        pad = "00";
+        fs.renameSync(`${filePath}/${file}`, `${filePath}/${newName}${pad}${count}${ext}`);
+        console.log(`renaming ${file} to ${newName}${pad}${count}${ext}`);
+      } else if (count >= 10 && count < 100) {
         pad = "0";
         fs.renameSync(`${filePath}/${file}`, `${filePath}/${newName}${pad}${count}${ext}`);
         console.log(`renaming ${file} to ${newName}${pad}${count}${ext}`);
@@ -67,13 +71,8 @@ async function rename() {
         fs.renameSync(`${filePath}/${file}`, `${filePath}/${newName}${count}${ext}`);
         console.log(`renaming ${file} to ${newName}${count}${ext}`);
       }
-    }
-    if (files.length >= 100) {
+    } else if (files.length >= 10 && !files.length < 100) {
       if (count < 10) {
-        pad = "00";
-        fs.renameSync(`${filePath}/${file}`, `${filePath}/${newName}${pad}${count}${ext}`);
-        console.log(`renaming ${file} to ${newName}${pad}${count}${ext}`);
-      } else if (count >= 10 && count < 100) {
         pad = "0";
         fs.renameSync(`${filePath}/${file}`, `${filePath}/${newName}${pad}${count}${ext}`);
         console.log(`renaming ${file} to ${newName}${pad}${count}${ext}`);
