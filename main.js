@@ -53,30 +53,33 @@ async function rename() {
     newName = options.newName;
   }
 
-  for (let i = 0; i > files.length; i++) {
-    //let file of files
-    let ext = path.extname(files[i]);
+  for (let file of files) {
+    //let i = 0; i > files.length; i++
+    let ext = path.extname(file);
     //let name = path.basename(file, ext);
     count += 1;
-    console.log(files[i]);
-    if (files.length >= 10) {
-      if (i < 10) {
+    if (files.length >= 10 && !files.length > 10) {
+      if (count < 10) {
         pad = "0";
-        fs.renameSync(`${filePath}/${files[i]}`, `${filePath}/${newName}${pad}${count}${ext}`);
+        fs.renameSync(`${filePath}/${file}`, `${filePath}/${newName}${pad}${count}${ext}`);
+        console.log(`renaming ${file} to ${newName}${pad}${count}${ext}`);
       } else {
-        fs.renameSync(`${filePath}/${files[i]}`, `${filePath}/${newName}${count}${ext}`);
+        fs.renameSync(`${filePath}/${file}`, `${filePath}/${newName}${count}${ext}`);
+        console.log(`renaming ${file} to ${newName}${count}${ext}`);
       }
     }
     if (files.length >= 100) {
-      if (i < 10) {
+      if (count < 10) {
         pad = "00";
-        fs.renameSync(`${filePath}/${files[i]}`, `${filePath}/${newName}${pad}${count}${ext}`);
-        console.log("less than 10");
-      } else if (i >= 10 && i < 100) {
+        fs.renameSync(`${filePath}/${file}`, `${filePath}/${newName}${pad}${count}${ext}`);
+        console.log(`renaming ${file} to ${newName}${pad}${count}${ext}`);
+      } else if (count >= 10 && count < 100) {
         pad = "0";
-        fs.renameSync(`${filePath}/${files[i]}`, `${filePath}/${newName}${pad}${count}${ext}`);
+        fs.renameSync(`${filePath}/${file}`, `${filePath}/${newName}${pad}${count}${ext}`);
+        console.log(`renaming ${file} to ${newName}${pad}${count}${ext}`);
       } else {
-        fs.renameSync(`${filePath}/${files[i]}`, `${filePath}/${newName}${count}${ext}`);
+        fs.renameSync(`${filePath}/${file}`, `${filePath}/${newName}${count}${ext}`);
+        console.log(`renaming ${file} to ${newName}${count}${ext}`);
       }
     }
   }
