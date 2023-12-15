@@ -81,6 +81,8 @@ async function rename() {
         fs.renameSync(`${filePath}/${file}`, `${filePath}/${newName}${count}${ext}`);
         console.log(`renaming ${file} to ${newName}${count}${ext}`);
       }
+    } else {
+      fs.renameSync(`${filePath}/${file}`, `${filePath}/${newName}${count}${ext}`);
     }
   }
   count = 0;
