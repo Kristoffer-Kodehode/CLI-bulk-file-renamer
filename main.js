@@ -1,8 +1,4 @@
 #!/usr/bin/env node
-// const fs = require("fs");
-// const fsPromises = require("fs").promises;
-// const path = require("path");
-// const yargs = require("yargs");
 import fs from "fs";
 import fsPromises from "fs/promises";
 import path from "path";
@@ -28,7 +24,7 @@ const options = yargs
   .option("n", { alias: "newName", describe: "New name of your files.", type: "string" }).argv;
 
 async function getPath() {
-  filePath = options.input || "./input";
+  filePath = options.input || "input";
 }
 
 async function getFiles() {
@@ -54,9 +50,8 @@ async function rename() {
   }
 
   for (let file of files) {
-    //let i = 0; i > files.length; i++
     let ext = path.extname(file);
-    //let name = path.basename(file, ext);
+
     count += 1;
     if (files.length >= 100) {
       if (count < 10) {
