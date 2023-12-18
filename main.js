@@ -23,9 +23,7 @@ const options = yargs
   })
   .option("n", { alias: "newName", describe: "New name of your files.", type: "string" }).argv;
 
-async function getPath() {
-  filePath = options.input || "input";
-}
+filePath = options.input || "input";
 
 async function getFiles() {
   if (!fs.existsSync(path.join(__dirname, "input"))) {
@@ -83,6 +81,5 @@ async function rename() {
   pad = "";
 }
 
-await getPath();
 await getFiles();
 await rename();
