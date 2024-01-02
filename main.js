@@ -13,7 +13,7 @@ let filePath;
 let files;
 let newName;
 let count = 0;
-let pad = "";
+//let pad = "";
 
 const options = yargs
   .option("i", {
@@ -51,8 +51,9 @@ async function rename() {
     let ext = path.extname(file);
 
     count += 1;
-    if (files.length >= 100) {
+    /*if (files.length >= 100) {
       if (count < 10) {
+        //while loop?
         pad = "00";
         fs.renameSync(`${filePath}/${file}`, `${filePath}/${newName}${pad}${count}${ext}`);
         console.log(`renaming ${file} to ${newName}${pad}${count}${ext}`);
@@ -75,10 +76,31 @@ async function rename() {
       }
     } else {
       fs.renameSync(`${filePath}/${file}`, `${filePath}/${newName}${count}${ext}`);
+    }*/
+
+    if (files.length >= 100) {
+      fs.renameSync(
+        `${filePath}/${file}`,
+        `${filePath}/${newName}${String(count).padStart(3, 0)}${ext}`
+      );
+      console.log(`renaming ${file} to ${newName}${pad}${count}${ext}`);
+    } else if (files.length >= 10 && !files.length < 100) {
+      if (count < 10) {
+        fs.renameSync(
+          `${filePath}/${file}`,
+          `${filePath}/${newName}${String(count).padStart(2, 0)}${ext}`
+        );
+        console.log(`renaming ${file} to ${newName}${pad}${count}${ext}`);
+      } else {
+        fs.renameSync(`${filePath}/${file}`, `${filePath}/${newName}${count}${ext}`);
+        console.log(`renaming ${file} to ${newName}${count}${ext}`);
+      }
+    } else {
+      fs.renameSync(`${filePath}/${file}`, `${filePath}/${newName}${count}${ext}`);
     }
   }
   count = 0;
-  pad = "";
+  //pad = "";
 }
 
 await getFiles();
