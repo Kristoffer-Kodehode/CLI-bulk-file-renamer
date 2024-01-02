@@ -79,24 +79,23 @@ async function rename() {
     }*/
 
     if (files.length >= 100) {
-      fs.renameSync(
-        `${filePath}/${file}`,
-        `${filePath}/${newName}${String(count).padStart(3, 0)}${ext}`
-      );
-      console.log(`renaming ${file} to ${newName}${pad}${count}${ext}`);
+      const fullNewName = `${filePath}/${newName}${String(count).padStart(3, 0)}${ext}`;
+      fs.renameSync(`${filePath}/${file}`, fullNewName);
+      console.log(`renaming ${file} to ${fullNewName}`);
     } else if (files.length >= 10 && !files.length < 100) {
       if (count < 10) {
-        fs.renameSync(
-          `${filePath}/${file}`,
-          `${filePath}/${newName}${String(count).padStart(2, 0)}${ext}`
-        );
-        console.log(`renaming ${file} to ${newName}${pad}${count}${ext}`);
+        const fullNewName = `${filePath}/${newName}${String(count).padStart(2, 0)}${ext}`;
+        fs.renameSync(`${filePath}/${file}`, fullNewName);
+        console.log(`renaming ${file} to ${fullNewName}`);
       } else {
-        fs.renameSync(`${filePath}/${file}`, `${filePath}/${newName}${count}${ext}`);
-        console.log(`renaming ${file} to ${newName}${count}${ext}`);
+        const fullNewName = `${filePath}/${newName}${count}${ext}`;
+        fs.renameSync(`${filePath}/${file}`, newName);
+        console.log(`renaming ${file} to ${fullNewName}`);
       }
     } else {
-      fs.renameSync(`${filePath}/${file}`, `${filePath}/${newName}${count}${ext}`);
+      const fullNewName = `${filePath}/${newName}${count}${ext}`;
+      fs.renameSync(`${filePath}/${file}`, newName);
+      console.log(`renaming ${file} to ${fullNewName}`);
     }
   }
   count = 0;
